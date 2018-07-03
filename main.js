@@ -35,26 +35,6 @@ bot.on('guildMemberRemove', member => {
   
 });
 
-//say 
-bot.on('message', message => {
-    let args = message.content.split(" ").slice(1);
-   
-    if(message.content.startsWith(prefix + "say"))  {
-       if (message.member.hasPermission("ADMINISTRATOR")){
-           message.delete()
-           const embed = new Discord.RichEmbed()
-           .setTitle(message.author.username + " a dit")
-           .setDescription(args.join(" "))
-           .setColor(0xff0000)
-            message.channel.sendEmbed(embed);
-       }else{
-           return message.reply("Tu n'as pas la permission")
-   
-    }
-    }
-    
-});
-
 bot.on('message', message => {
        
     if (message.content.startsWith(prefix + "vraioufaux")) {
@@ -145,7 +125,6 @@ bot.on('message', message => {
          .addField("w!bot","info sur le bot")
          .addField("w!don", "Un petit don paypal ne fait pas de mal :p ")
          .addField("w!histoires", "Savoir les histoires disponible")
-         .addField("w!say [Text]", "Le bot répète le text")
          .addField("w!sondage [TEXT] (réservé au créateur)", "Permet de faire des sondages")
          .addField("w!vraioufaux [TEXT] (réservé au créateur)", "Permet de faire des vrai ou faux")
          .addField("w!systsondage", "Permet de faire le système des sondage")
