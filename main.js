@@ -40,21 +40,24 @@ bot.on('message', message => {
     let args = message.content.split(" ").slice(1);
    
     if(message.content.startsWith(prefix + "say"))  {
+       if (message.member.hasPermission("ADMINISTRATOR")){
            message.delete()
            const embed = new Discord.RichEmbed()
            .setTitle(message.author.username + " a dit")
            .setDescription(args.join(" "))
            .setColor(0xff0000)
             message.channel.sendEmbed(embed);
+       }else{
+           return message.reply("Tu n'as pas la permission")
    
-       }
+    }
    
 });
 
 bot.on('message', message => {
        
     if (message.content.startsWith(prefix + "vraioufaux")) {
-   if(message.author.id === "371914890903945216"){
+   if (message.member.hasPermission("ADMINISTRATOR")){
        message.delete()
        let args = message.content.split(" ").slice(1);
        let thingToEcho = args.join(" ")
@@ -79,7 +82,7 @@ bot.on('message', message => {
 bot.on('message', message => {
        
     if (message.content.startsWith(prefix + "sondage")) {
-   if(message.author.id === "371914890903945216"){
+   if (message.member.hasPermission("ADMINISTRATOR")){
        message.delete()
        let args = message.content.split(" ").slice(1);
        let thingToEcho = args.join(" ")
@@ -128,26 +131,26 @@ bot.on('message', message => {
         var embednom = new Discord.RichEmbed()
          .setTitle("Help page")
          .setDescription("Les commandes sont dessous :p ")
-         .addField("-help","Pour avoir les commandes")
-         .addField("-Google","Pour savoir c'est quoi google")
-         .addField("-infobot","Pour avoir les informations du bot")
-         .addField("-clear","Pour supprimé les message")
-         .addField("-nouveautés","Pour savoir quel sont les nouveautés")
-         .addField("-botcréator","Pour savoir quesque represente botcréator")
-         .addField("-support", "Si besoin d'aide prononcer cette commande")
-         .addField("-monavatar", "Pour voir votre avatar en url c'est ici !")
-         .addField("-version", "Pour voir ma dernière version :p")
-         .addField("-infodiscord", "Informations sur le discord ton serveur discord !") 
-         .addField("-bot","info sur le bot")
-         .addField("-don", "Un petit don paypal ne fait pas de mal :p ")
-         .addField("-histoires", "Savoir les histoires disponible")
-         .addField("-say [Text]", "Le bot répète le text")
-         .addField("-sondage [TEXT] (réservé au créateur)", "Permet de faire des sondages")
-         .addField("vraioufaux [TEXT] (réservé au créateur)", "Permet de faire des vrai ou faux")
-         .addField("-systsondage", "Permet de faire le système des sondage")
-         .addField("-systvraioufaux", "Permet de faire le système des vraioufaux")
-         .addField("-ownerclear", "Réservé au créateur")
-         .addField("-blagues","Simplement des blagues :) ")
+         .addField("w!help","Pour avoir les commandes")
+         .addField("w!Google","Pour savoir c'est quoi google")
+         .addField("w!infobot","Pour avoir les informations du bot")
+         .addField("w!clear","Pour supprimé les message")
+         .addField("w!nouveautés","Pour savoir quel sont les nouveautés")
+         .addField("w!botcréator","Pour savoir quesque represente botcréator")
+         .addField("w!support", "Si besoin d'aide prononcer cette commande")
+         .addField("w!monavatar", "Pour voir votre avatar en url c'est ici !")
+         .addField("w!version", "Pour voir ma dernière version :p")
+         .addField("w!infodiscord", "Informations sur le discord ton serveur discord !") 
+         .addField("w!bot","info sur le bot")
+         .addField("w!don", "Un petit don paypal ne fait pas de mal :p ")
+         .addField("w!histoires", "Savoir les histoires disponible")
+         .addField("w!say [Text]", "Le bot répète le text")
+         .addField("w!sondage [TEXT] (réservé au créateur)", "Permet de faire des sondages")
+         .addField("w!vraioufaux [TEXT] (réservé au créateur)", "Permet de faire des vrai ou faux")
+         .addField("w!systsondage", "Permet de faire le système des sondage")
+         .addField("w!systvraioufaux", "Permet de faire le système des vraioufaux")
+         .addField("w!ownerclear", "Réservé au créateur")
+         .addField("w!blagues","Simplement des blagues :) ")
          .setColor(0xFF0000);
                 message.channel.sendEmbed(embednom)
                 }
@@ -438,7 +441,7 @@ message.channel.delete();
  bot.on('message', message => {
 if(message.content === prefix + "ownerclear"){
    message.delete()
-    if (message.author.id === '371914890903945216') {
+    if (message.member.hasPermission("ADMINISTRATOR")){
         message.channel.fetchMessages()
             .then(function(list){
                 message.channel.bulkDelete(list);
@@ -482,6 +485,9 @@ if(message.content === prefix + "antiraidsun2"){
                     .then(function(list){
                         message.channel.bulkDelete(list);
                     }, function(err){message.channel.send("Erreur")})
+            
+                                                }else{
+                                                    return message.reply("Tu n'as pas la permission")
                                                 }
        if(message.content === prefix + "clear"){
           message.delete()
